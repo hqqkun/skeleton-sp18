@@ -9,8 +9,14 @@ public class NBody {
 		double[] yForces = new double[planets.length];
 
 		final String backGround = "./images/starfield.jpg";
-		StdDraw.setScale(-universeRadius, universeRadius);	
-		drawHole(backGround, planets);
+		StdDraw.setScale(-universeRadius, universeRadius);
+
+		StdDraw.clear();
+		StdDraw.picture(0, 0, backGround);
+		for(Planet p:planets){
+			p.draw();
+		}
+		//drawHole(backGround, planets);
 		StdDraw.enableDoubleBuffering();
 		
 		for(double time = 0.0; time < T;time += dt) {
@@ -22,7 +28,13 @@ public class NBody {
 			for(int i = 0; i != planets.length; ++i) {
 				planets[i].update(dt, xForces[i], yForces[i]);
 			}
-			drawHole(backGround, planets);
+
+			// drawHole(backGround, planets);
+			StdDraw.clear();
+			StdDraw.picture(0, 0, backGround);
+			for(Planet p:planets){
+				p.draw();
+			}
 			StdDraw.show();
 			StdDraw.pause(10);
 		}
@@ -38,14 +50,14 @@ public class NBody {
 		
 	}
 
-	public static void drawHole(String backGround,Planet[] planets) {
-		StdDraw.clear();
-		StdDraw.picture(0, 0, backGround);
-		for(Planet p:planets){
-			p.draw();
-		}
+	// public static void drawHole(String backGround,Planet[] planets) {
+	// 	StdDraw.clear();
+	// 	StdDraw.picture(0, 0, backGround);
+	// 	for(Planet p:planets){
+	// 		p.draw();
+	// 	}
 		
-	}
+	// }
 	public static double readRadius(String fileName) {
 		In in = new In(fileName);
 		int numPlanets = in.readInt();
