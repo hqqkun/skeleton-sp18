@@ -65,8 +65,7 @@ public class LinkedListDeque<T> {
         head.prev.next = tmp;
         head.prev = tmp;
     }
-
-    /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
+    
     public T removeLast() {
         if (isEmpty()) {
             return null;
@@ -79,7 +78,7 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if ( (index + 1) > size) {
+        if ( ( index + 1 ) > size ) {
             return null;
         }
         int i = 0;
