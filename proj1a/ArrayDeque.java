@@ -16,12 +16,12 @@ public class ArrayDeque<T> {
         return front == rear;
     }
     private boolean isFull() {
-        return addOne(rear) == front;
+        return plusOne(rear) == front;
     }
     private int minusOne(int index){
         return (index -1 + maxSize) % maxSize;
     }
-    private int addOne(int index){
+    private int plusOne(int index){
         return (index + 1) % maxSize;
     }
     private int getProperSize(int dir){
@@ -38,15 +38,15 @@ public class ArrayDeque<T> {
     private void reshape(int newSize) {
         int size = size();
         T[] tmp = (T[]) new Object[newSize];
-        System.arraycopy(data, (front + 1) % maxSize, tmp, 1, maxSize - 1 - front);
-        System.arraycopy(data, 0, tmp, maxSize - front, (rear + 1) % maxSize);
-//         int newFront = 0;
-//         int end = addOne(rear);
-//         int ptr = addOne(front);
-//         for(;ptr != end;ptr = addOne(ptr)){
-//             tmp[newFront] = data[ptr];
-//             ++newFront;
-//         }
+//        System.arraycopy(data, (front + 1) % maxSize, tmp, 1, maxSize - 1 - front);
+//        System.arraycopy(data, 0, tmp, maxSize - front, (rear + 1) % maxSize);
+        int newFront = 1;
+        int end = plusOne(rear);
+        int oldFront = plusOne(front);
+        for(;oldFront != end;oldFront = plusOne(oldFront)){
+            tmp[newFront] = data[oldFront];
+            ++newFront;
+        }
         data = tmp;
         front = 0;
         rear = size;
@@ -62,7 +62,7 @@ public class ArrayDeque<T> {
         if (isFull()) {
             reshape((getProperSize(1)));
         }
-        rear = addOne(rear);
+        rear = plusOne(rear);
         data[rear] = item;
     }
     public void addFirst(T item) {
@@ -76,7 +76,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        front = addOne(front);
+        front = plusOne(front);
         T tmp = data[front];
         data[front] = null;
         cheakUsage();
@@ -95,9 +95,9 @@ public class ArrayDeque<T> {
     public void printDeque(){
         if(isEmpty())
             return;
-        int ptr = addOne(front);
-        int end = addOne(rear);
-        for(; ptr != end; ptr = addOne(ptr)){
+        int ptr = plusOne(front);
+        int end = plusOne(rear);
+        for(; ptr != end; ptr = plusOne(ptr)){
             System.out.print(data[ptr] + " ");
         }
         System.out.print('\n');
@@ -107,8 +107,8 @@ public class ArrayDeque<T> {
             return null;
         }
         int i = 0;
-        int ptr = addOne(front);
-        for(; i != index; ptr = addOne(ptr))
+        int ptr = plusOne(front);
+        for(; i != index; ptr = plusOne(ptr))
             ++i;
         return data[ptr];
     }
