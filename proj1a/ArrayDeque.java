@@ -29,11 +29,7 @@ public class ArrayDeque<T> {
             return maxSize << 1;
         }
         // goes down
-        int sentinalSize = size() << 2;
-        int newSize = maxSize;
-        for(; newSize > sentinalSize; newSize >>= 1)
-            ;
-        return newSize;
+        return maxSize >> 1;
     }
     private void reshape(int newSize) {
         int size = size();
