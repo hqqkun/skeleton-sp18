@@ -1,9 +1,9 @@
 public class LinkedListDeque<T> {
 
     private class Node {
-        public Node prev;
-        public T item;
-        public Node next;
+        private Node prev;
+        private T item;
+        private Node next;
 
         public Node(T item, Node prev, Node next) {
             this.item = item;
@@ -11,44 +11,43 @@ public class LinkedListDeque<T> {
             this.next = next;
         }
 
-        public T helper(int needIndex,int myIndex){
+        public T helper(int needIndex, int myIndex) {
             if (needIndex == myIndex) {
                 return item;
             }
-            return next.helper(needIndex,myIndex + 1);
+            return next.helper(needIndex, myIndex + 1);
         }
     }
 
     private final Node head;
     private int size;
 
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         size = 0;
-        head = new Node(null,null,null);
+        head = new Node(null, null, null);
         head.next = head;
         head.prev = head;
     }
 
     /** Returns the number of items in the deque. */
-    public int size(){
+    public int size() {
         return size;
     }
 
     /**  Returns true if deque is empty, false otherwise. */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return head.next == head;
     }
 
     /** Adds an item of type T to the front of the deque. */
-    public void addFirst(T item){
+    public void addFirst(T item) {
         ++size;
-        Node tmp = new Node(item,head,head.next);
+        Node tmp = new Node(item, head, head.next);
         head.next.prev = tmp;
         head.next = tmp;
     }
 
-    /** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
-    public T removeFirst(){
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
@@ -60,15 +59,15 @@ public class LinkedListDeque<T> {
     }
 
     /**  Adds an item of type T to the back of the deque. */
-    public void addLast(T item){
+    public void addLast(T item) {
         ++size;
-        Node tmp = new Node(item,head.prev,head);
+        Node tmp = new Node(item, head.prev, head);
         head.prev.next = tmp;
         head.prev = tmp;
     }
 
     /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
-    public T removeLast(){
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -79,7 +78,7 @@ public class LinkedListDeque<T> {
         return tmp.item;
     }
 
-    public T get(int index){
+    public T get(int index) {
         if ( (index + 1) > size) {
             return null;
         }
@@ -91,22 +90,21 @@ public class LinkedListDeque<T> {
         return ptr.item;
     }
     
-    public T getRecursive(int index){
+    public T getRecursive(int index) {
         if ((index + 1) > size) {
             return null;
         }
-        return head.next.helper(index,0);
+        return head.next.helper(index, 0);
     }
 
     /** Prints the items in the deque from first to last, separated by a space. */
-    public void printDeque(){
+    public void printDeque() {
         if (size == 0) {
             return;
         }
-        for (Node ptr = head.next; ptr != head;ptr = ptr.next) {
+        for (Node ptr = head.next; ptr != head; ptr = ptr.next) {
             System.out.print(ptr.item + " ");
         }
         System.out.print('\n');
     }
-
 }
