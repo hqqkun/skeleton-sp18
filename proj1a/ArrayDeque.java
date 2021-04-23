@@ -38,15 +38,15 @@ public class ArrayDeque<T> {
     private void reshape(int newSize) {
         int size = size();
         T[] tmp = (T[]) new Object[newSize];
-//        System.arraycopy(data, (front + 1) % maxSize, tmp, 1, maxSize - 1 - front);
-//        System.arraycopy(data, 0, tmp, maxSize - front, (rear + 1) % maxSize);
-        int newFront = 0;
-        int end = addOne(rear);
-        int ptr = addOne(front);
-        for(;ptr != end;ptr = addOne(ptr)){
-            tmp[newFront] = data[ptr];
-            ++newFront;
-        }
+        System.arraycopy(data, (front + 1) % maxSize, tmp, 1, maxSize - 1 - front);
+        System.arraycopy(data, 0, tmp, maxSize - front, (rear + 1) % maxSize);
+//         int newFront = 0;
+//         int end = addOne(rear);
+//         int ptr = addOne(front);
+//         for(;ptr != end;ptr = addOne(ptr)){
+//             tmp[newFront] = data[ptr];
+//             ++newFront;
+//         }
         data = tmp;
         front = 0;
         rear = size;
