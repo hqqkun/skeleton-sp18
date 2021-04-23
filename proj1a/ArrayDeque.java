@@ -80,10 +80,10 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        --size;
         rear = minusOne(rear);
         T tmp = data[rear];
         data[rear] = null;
+        --size;
         checkUsage();
         return tmp;
     }
@@ -99,7 +99,7 @@ public class ArrayDeque<T> {
         System.out.print('\n');
     }
     public T get(int index){
-        if ((index + 1) > size()) {
+        if (index >= size) {
             return null;
         }
         int start = plusOne(front);
