@@ -40,12 +40,12 @@ public class ArrayDeque<T> {
         T[] tmp = (T[]) new Object[newSize];
 //        System.arraycopy(data, (front + 1) % maxSize, tmp, 1, maxSize - 1 - front);
 //        System.arraycopy(data, 0, tmp, maxSize - front, (rear + 1) % maxSize);
-        int newFront = 1;
+        int start = 1;
         int end = plusOne(rear);
         int oldFront = plusOne(front);
         for(;oldFront != end;oldFront = plusOne(oldFront)){
-            tmp[newFront] = data[oldFront];
-            ++newFront;
+            tmp[start] = data[oldFront];
+            ++start;
         }
         data = tmp;
         front = 0;
@@ -106,10 +106,7 @@ public class ArrayDeque<T> {
         if((index + 1) > size()){
             return null;
         }
-        int i = 0;
-        int ptr = plusOne(front);
-        for(; i != index; ptr = plusOne(ptr))
-            ++i;
-        return data[ptr];
+        int start = plusOne(front);
+        return data[(start + index) % maxSize];
     }
 }
