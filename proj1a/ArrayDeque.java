@@ -45,7 +45,7 @@ public class ArrayDeque<T> {
         int ptr = addOne(front);
         for(;ptr != end;ptr = addOne(ptr)){
             tmp[newFront] = data[ptr];
-            newFront = addOne(newFront);
+            ++newFront;
         }
         data = tmp;
         front = 0;
