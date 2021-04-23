@@ -2,7 +2,7 @@ public class ArrayDeque<T> {
     private T[] data;
     private int front;
     private int rear;
-    private int maxSize;
+    public int maxSize;
 
     public ArrayDeque() {
         data = (T[]) new Object[8];
@@ -29,17 +29,16 @@ public class ArrayDeque<T> {
             return maxSize << 1;
         }
         // goes down
-//         int sentinalSize = size() << 2;
-//         int newSize = maxSize;
-//         for(; newSize > sentinalSize; newSize >>= 1)
-//             ;
-//         return newSize;
-        return maxSize >> 1;
+        int sentinalSize = size() << 2;
+        int newSize = maxSize;
+        for(; newSize > sentinalSize; newSize >>= 1)
+            ;
+        return newSize;
     }
     private void reshape(int newSize) {
         int size = size();
         T[] tmp = (T[]) new Object[newSize];
-        
+
         int start = 1;
         int end = plusOne(rear);
         int oldFront = plusOne(front);
@@ -52,7 +51,7 @@ public class ArrayDeque<T> {
         rear = size;
         maxSize = newSize;
     }
-    private void cheakUsage() {
+    private void checkUsage() {
         int size = size();
         if(size >= 16 && ((size<<2)< maxSize)){
             reshape(getProperSize(0));
@@ -79,7 +78,7 @@ public class ArrayDeque<T> {
         front = plusOne(front);
         T tmp = data[front];
         data[front] = null;
-        cheakUsage();
+        checkUsage();
         return tmp;
     }
     public T removeLast() {
@@ -89,7 +88,7 @@ public class ArrayDeque<T> {
         T tmp = data[rear];
         data[rear] = null;
         rear = minusOne(rear);
-        cheakUsage();
+        checkUsage();
         return tmp;
     }
     public void printDeque(){
