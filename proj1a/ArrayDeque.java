@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class ArrayDeque<T> {
     private T[] data;
     private int front;
@@ -34,7 +32,6 @@ public class ArrayDeque<T> {
         return data.length >> 1;
     }
     private void reshape(int newSize) {
-        int size = size();
         T[] tmp = (T[]) new Object[newSize];
 
         int start = 1;
