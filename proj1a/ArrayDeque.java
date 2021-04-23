@@ -29,24 +29,25 @@ public class ArrayDeque<T> {
             return maxSize << 1;
         }
         // goes down
-        int sentinalSize = size() << 2;
-        int newSize = maxSize;
-        for(; newSize > sentinalSize; newSize >>= 1)
-            ;
-        return newSize;
+//         int sentinalSize = size() << 2;
+//         int newSize = maxSize;
+//         for(; newSize > sentinalSize; newSize >>= 1)
+//             ;
+//         return newSize;
+        return maxSize >> 1;
     }
     private void reshape(int newSize) {
         int size = size();
         T[] tmp = (T[]) new Object[newSize];
-//        System.arraycopy(data, (front + 1) % maxSize, tmp, 1, maxSize - 1 - front);
-//        System.arraycopy(data, 0, tmp, maxSize - front, (rear + 1) % maxSize);
-        int start = 1;
-        int end = plusOne(rear);
-        int oldFront = plusOne(front);
-        for(;oldFront != end;oldFront = plusOne(oldFront)){
-            tmp[start] = data[oldFront];
-            ++start;
-        }
+        System.arraycopy(data, (front + 1) % maxSize, tmp, 1, maxSize - 1 - front);
+        System.arraycopy(data, 0, tmp, maxSize - front, (rear + 1) % maxSize);
+//         int start = 1;
+//         int end = plusOne(rear);
+//         int oldFront = plusOne(front);
+//         for(;oldFront != end;oldFront = plusOne(oldFront)){
+//             tmp[start] = data[oldFront];
+//             ++start;
+//         }
         data = tmp;
         front = 0;
         rear = size;
