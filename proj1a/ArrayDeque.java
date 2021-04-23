@@ -80,10 +80,10 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        --size;
         front = plusOne(front);
         T tmp = data[front];
         data[front] = null;
+        --size;
         checkUsage();
         return tmp;
     }
