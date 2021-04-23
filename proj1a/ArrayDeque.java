@@ -10,35 +10,35 @@ public class ArrayDeque<T> {
         rear = 1;
         size = 0;
     }
-    
+
     public int size() {
         return size;
     }
-    
+
     public boolean isEmpty() {
         return size == 0;
     }
-    
+
     private boolean isFull() {
         return size == data.length;
     }
-    
-    private int minusOne(int index){
-        return (index -1 + data.length) % data.length;
+
+    private int minusOne(int index) {
+        return (index - 1 + data.length) % data.length;
     }
-    
-    private int plusOne(int index){
+
+    private int plusOne(int index) {
         return (index + 1) % data.length;
     }
-    
-    private int getProperSize(int dir){
+
+    private int getProperSize(int dir) {
         if (dir == 1) {
             return data.length << 1;
         }
         // goes down
         return data.length >> 1;
     }
-    
+
     private void reshape(int newSize) {
         T[] tmp = (T[]) new Object[newSize];
 
@@ -51,13 +51,13 @@ public class ArrayDeque<T> {
         front = 0;
         rear = size + 1;
     }
-    
+
     private void checkUsage() {
-        if (data.length >= 16 && ((size << 2)< data.length)) {
+        if (data.length >= 16 && ((size << 2) < data.length)) {
             reshape(getProperSize(0));
         }
     }
-    
+
     public void addLast(T item) {
         if (isFull()) {
             reshape((getProperSize(1)));
@@ -66,7 +66,7 @@ public class ArrayDeque<T> {
         rear = plusOne(rear);
         ++size;
     }
-    
+
     public void addFirst(T item) {
         if (isFull()) {
             reshape((getProperSize(1)));
@@ -75,7 +75,7 @@ public class ArrayDeque<T> {
         front = minusOne(front);
         ++size;
     }
-    
+
     public T removeFirst() {
         if (isEmpty()) {
             return null;
@@ -87,7 +87,7 @@ public class ArrayDeque<T> {
         checkUsage();
         return tmp;
     }
-    
+
     public T removeLast() {
         if (isEmpty()) {
             return null;
@@ -99,8 +99,8 @@ public class ArrayDeque<T> {
         checkUsage();
         return tmp;
     }
-    
-    public void printDeque(){
+
+    public void printDeque() {
         if (isEmpty()) {
             return;
         }
@@ -111,8 +111,8 @@ public class ArrayDeque<T> {
         }
         System.out.print('\n');
     }
-    
-    public T get(int index){
+
+    public T get(int index) {
         if (index >= size) {
             return null;
         }
