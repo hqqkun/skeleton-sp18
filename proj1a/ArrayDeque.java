@@ -8,6 +8,7 @@ public class ArrayDeque<T> {
         data = (T[]) new Object[8];
         front = 0;
         rear = 1;
+        size = 0;
     }
     public int size() {
         return size;
