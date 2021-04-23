@@ -53,7 +53,7 @@ public class ArrayDeque<T> {
     }
     
     private void checkUsage() {
-        if (data.length >= 16 && ((size<<2)< data.length)) {
+        if (data.length >= 16 && ((size << 2)< data.length)) {
             reshape(getProperSize(0));
         }
     }
