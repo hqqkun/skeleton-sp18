@@ -22,16 +22,16 @@ public class TestArrayDequeGold {
                 case 0:
                     arrayDequeSolution.addFirst(i);
                     studentArrayDeque.addFirst(i);
-                    message += "addFirst(" + i + ")\n";
+                    message += "\naddFirst(" + i + ")";
                     break;
                 case 1:
                     arrayDequeSolution.addLast(i);
                     studentArrayDeque.addLast(i);
-                    message += "addLast(" + i + ")\n";
+                    message += "\naddLast(" + i + ")";
                     break;
                 case 2:
                     if (!arrayDequeSolution.isEmpty() && !studentArrayDeque.isEmpty()) {
-                        message += "removeFirst()\n";
+                        message += "\nremoveFirst()";
                         exp = arrayDequeSolution.removeFirst();
                         act = studentArrayDeque.removeFirst();
                         assertEquals(message, exp, act);
@@ -39,7 +39,7 @@ public class TestArrayDequeGold {
                     break;
                 case 3:
                     if (!arrayDequeSolution.isEmpty() && !studentArrayDeque.isEmpty()) {
-                        message += "removeLast()\n";
+                        message += "\nremoveLast()";
                         exp = arrayDequeSolution.removeLast();
                         act = studentArrayDeque.removeLast();
                         assertEquals(message, exp, act);
